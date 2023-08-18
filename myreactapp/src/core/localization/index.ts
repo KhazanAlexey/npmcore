@@ -1,0 +1,1 @@
+export { initialLocalization } from './localization';

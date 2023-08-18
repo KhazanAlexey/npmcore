@@ -1,0 +1,22 @@
+.sub-header {
+  background-color: #d6e1ea;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  a {
+    text-decoration: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: inherit;
+    text-transform: uppercase;
+
+    &.active {
+      color: #365d77;
+      pointer-events: none;
+      border-bottom: none;
+      font-weight: bold;
+    }
+  }
+}

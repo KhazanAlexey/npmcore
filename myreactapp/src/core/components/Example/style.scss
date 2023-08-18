@@ -1,0 +1,1193 @@
+@import '../../../../node_modules/react-datepicker/dist/react-datepicker.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+$exampleColorMain: #0C122A;
+$exampleColorPurple: #6552D8;
+$exampleColorGrayBorder: #BAC3D5;
+$exampleColorGrayText: #697395;
+$exampleColorGrayHover: #E9E9E9;
+
+$exampleColorError: #EA1717;
+$exampleColorSuccess: #03ad00;
+$exampleColorInfo: #077eff;
+$exampleColorWarning: #f4cb15;
+$exampleColorDisabled: #F7F7FA;
+
+$exampleColorWhite: #FEFEFE;
+$exampleColorLightBlue: #008aff;
+$exampleColorLink: #737373;
+$exampleColorActiveLink: $exampleColorMain;
+
+$exampleBackgroundBlack: #282828;
+$exampleMainBackground: #212e53;
+$exampleDisabledBackground: #A9A9A9;
+
+$exampleHeaderZIndex: 10;
+$exampleSnackbarZIndex: 9000;
+
+$exampleModalZIndex: 3000;
+$exampleHeaderZIndex: 1500;
+
+$containerWidth: 1200;
+
+@function exampleToRem($value) {
+  @return calc($value / 16) + rem;
+}
+
+@mixin exampleLaptop {
+  @media screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin exampleTablets {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin examplePhones {
+  @media screen and (max-width: 425px) {
+    @content;
+  }
+}
+
+@mixin exampleSmallPhone {
+  @media screen and (max-width: 375px) {
+    @content;
+  }
+}
+
+html {
+  font-size: 16px;
+  color: $exampleColorMain;
+
+  @include exampleTablets {
+    font-size: 14px;
+  }
+}
+
+.core-example {
+  min-height: 100vh;
+
+  a {
+    color: inherit;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .container {
+    width: 100%;
+    max-width: exampleToRem($containerWidth);
+    margin: 0 auto;
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: exampleToRem(30) exampleToRem(15);
+    }
+
+    &-main {
+      padding: exampleToRem(15);
+      min-height: 100%;
+      flex-grow: 1;
+
+      &__not-found {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+
+    &-footer {
+      padding: exampleToRem(30) exampleToRem(15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .version-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 9999;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .3);
+    color: $exampleColorWarning;
+    pointer-events: none;
+    font-size: 10px;
+  }
+
+  .header {
+    background-color: $exampleColorWhite;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: $exampleHeaderZIndex;
+    width: 100%;
+    border-bottom: 1px solid $exampleColorDisabled;
+
+    &__logo {
+      flex-grow: 1;
+      text-decoration: none;
+      font-weight: bolder;
+      text-transform: uppercase;
+
+      &.active {
+        pointer-events: none;
+      }
+    }
+
+    .app-link {
+      padding: 0 exampleToRem(10);
+      text-transform: uppercase;
+
+      &.active {
+        color: $exampleColorActiveLink;
+        font-weight: bolder;
+        pointer-events: none;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-top: exampleToRem(88);
+  }
+
+  .footer {
+    background-color: $exampleBackgroundBlack;
+    color: $exampleColorWhite;
+  }
+
+  .language-block {
+    list-style: none;
+    padding: exampleToRem(5);
+    background-color: $exampleDisabledBackground;
+    display: flex;
+
+    &__item {
+      padding: 0 exampleToRem(5);
+      cursor: pointer;
+      transition: transform .3s ease-out;
+
+      &_active {
+        font-weight: bolder;
+        pointer-events: none;
+        transform: scale(1.15);
+        color: $exampleColorActiveLink;
+      }
+    }
+  }
+
+  .snackbar {
+    position: fixed;
+    max-width: exampleToRem(320);
+    width: 100%;
+    z-index: $exampleSnackbarZIndex;
+
+    &__right {
+
+      .snacks-item {
+        animation-name: show-right;
+
+        &__closing {
+          animation-name: hide-right;
+        }
+      }
+    }
+
+    &__left {
+
+      .snacks-item {
+        animation-name: show-left;
+
+        &__closing {
+          animation-name: hide-left;
+        }
+      }
+    }
+  }
+
+  .snacks {
+
+    &-item {
+      display: flex;
+      align-items: center;
+      margin: exampleToRem(5);
+      border-radius: exampleToRem(3);
+      animation-duration: .3s;
+      color: $exampleColorWhite;
+
+      &__warning {
+        background-color: $exampleColorWarning;
+      }
+
+      &__success {
+        background-color: $exampleColorSuccess;
+      }
+
+      &__error {
+        background-color: $exampleColorError;
+      }
+
+      &__info {
+        background-color: $exampleColorInfo;
+      }
+    }
+
+    &-message {
+      flex-grow: 1;
+      padding-left: exampleToRem(5);
+      padding-right: exampleToRem(5);
+    }
+
+    &-icon {
+      &__close {
+        cursor: pointer;
+      }
+
+      &__wrapper {
+        display: flex;
+        align-self: flex-start;
+        padding: 5px;
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    @keyframes show-right {
+      from {
+        opacity: 0;
+        transform: translateX(exampleToRem(400));
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes hide-right {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateX(exampleToRem(400));
+      }
+    }
+
+    @keyframes show-left {
+      from {
+        opacity: 0;
+        transform: translateX(exampleToRem(-400));
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes hide-left {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateX(exampleToRem(-400));
+      }
+    }
+  }
+
+  .alerts {
+
+    &-item {
+      display: flex;
+      align-items: center;
+      border-radius: exampleToRem(3);
+      margin-bottom: exampleToRem(5);
+      color: $exampleColorWhite;
+      animation-duration: .3s;
+      animation-name: show;
+
+      &__closing {
+        animation-name: hide;
+      }
+
+      &__warning {
+        background-color: $exampleColorWarning;
+      }
+
+      &__success {
+        background-color: $exampleColorSuccess;
+      }
+
+      &__error {
+        background-color: $exampleColorError;
+      }
+
+      &__info {
+        background-color: $exampleColorInfo;
+      }
+    }
+
+    &-message {
+      flex-grow: 1;
+      padding-right: exampleToRem(10);
+      padding-left: exampleToRem(10);
+    }
+
+    &-icon {
+      &__wrapper {
+        display: flex;
+        align-self: flex-start;
+        padding: exampleToRem(5);
+        width: 30px;
+        height: 30px;
+      }
+
+      &__close {
+        cursor: pointer;
+      }
+
+    }
+
+    @keyframes show {
+      from {
+        opacity: 0;
+        transform: scale(0);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes hide {
+      from {
+        opacity: 1;
+        transform: scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: scale(0);
+      }
+    }
+  }
+
+  .btn-actions {
+    .btn {
+      padding: exampleToRem(5);
+      transition: all .1s ease-out;
+      border-right: 2px solid $exampleMainBackground;
+
+      &:first-child {
+        border-radius: exampleToRem(3) 0 0 exampleToRem(3);
+      }
+
+      &:last-child {
+        border-radius: 0 exampleToRem(3) exampleToRem(3) 0;
+        border-right: none;
+      }
+
+      &:hover {
+        opacity: .85;
+      }
+
+      &:active {
+        opacity: .7;
+      }
+
+      &__error {
+        background-color: $exampleColorError;
+      }
+
+      &__success {
+        background-color: $exampleColorSuccess;
+      }
+
+      &__warning {
+        background-color: $exampleColorWarning;
+      }
+
+      &__info {
+        background-color: $exampleColorInfo;
+      }
+    }
+  }
+
+  hr {
+    margin-top: exampleToRem(15);
+    margin-bottom: exampleToRem(15);
+  }
+
+  .form {
+    width: 100%;
+    margin: 0 auto exampleToRem(30);
+    max-width: 600px;
+  }
+
+  .error-text {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: $exampleColorError;
+    font-size: exampleToRem(12);
+  }
+
+  .input-box {
+    position: relative;
+    color: $exampleColorMain;
+    width: 100%;
+    margin-bottom: exampleToRem(30);
+
+    &__calendar {
+
+      .input-box {
+
+        &__element_right {
+          display: flex;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: 15px;
+          width: 25px;
+          height: 25px;
+          color: lime;
+        }
+      }
+    }
+
+    input {
+      padding: exampleToRem(15);
+      font-size: exampleToRem(14);
+      line-height: 130%;
+      border: exampleToRem(1) solid $exampleColorGrayBorder;
+      border-radius: exampleToRem(10);
+      width: 100%;
+      outline: none;
+      transition: all .3s ease-in-out;
+      font-weight: 500;
+    }
+
+    &:hover {
+      input {
+        border-color: $exampleColorPurple;
+      }
+    }
+
+    &__label {
+      position: absolute;
+      top: 50%;
+      left: exampleToRem(15);
+      z-index: 1;
+      transform: translate(0, -50%);
+      pointer-events: none;
+      transition: all .15s ease-in-out;
+      color: $exampleColorGrayText;
+    }
+
+    &__active {
+
+      .input-box {
+
+        &__label {
+          color: $exampleColorPurple;
+        }
+      }
+
+      input {
+        border-color: $exampleColorPurple;
+      }
+    }
+
+    &__no-empty {
+      .input-box {
+
+        &__label {
+          font-size: exampleToRem(10);
+          top: exampleToRem(-1);
+          background-color: $exampleColorWhite;
+          padding-left: exampleToRem(2);
+          padding-right: exampleToRem(2);
+          border-radius: exampleToRem(3);
+        }
+      }
+    }
+
+    &__invalid {
+      .input-box {
+
+        &__label {
+          color: $exampleColorError;
+        }
+      }
+
+      input {
+        border-color: $exampleColorError;
+        padding-right: exampleToRem(45);
+      }
+
+      &:hover {
+        input {
+          border-color: $exampleColorError;
+        }
+      }
+    }
+
+    &__element {
+
+      &_error {
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        right: exampleToRem(15);
+        transform: translate(0, -50%);
+
+        svg {
+          margin-left: exampleToRem(10);
+        }
+      }
+    }
+
+    &__disabled {
+      pointer-events: none;
+
+      input {
+        border-color: $exampleColorDisabled;
+        background-color: $exampleColorDisabled;
+      }
+    }
+
+    &__phone {
+
+      .input-box {
+
+        &__element_left {
+          width: exampleToRem(35);
+          height: exampleToRem(29);
+          pointer-events: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 50%;
+          left: exampleToRem(8);
+          transform: translate(0, -50%);
+          background-color: $exampleColorDisabled;
+          border-radius: exampleToRem(5);
+        }
+      }
+
+      input {
+        padding-left: exampleToRem(48);
+      }
+
+      &:not(.input-box__no-empty) {
+
+        .input-box__label {
+          left: exampleToRem(48);
+        }
+      }
+    }
+  }
+
+  .input-checkbox {
+    text-align: left;
+    margin-bottom: exampleToRem(30);
+    position: relative;
+    display: flex;
+
+    input {
+      display: none;
+
+      &:checked {
+
+        & + label {
+
+          span {
+
+            &::after {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+
+    label {
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+
+      span {
+        position: relative;
+        display: block;
+        width: exampleToRem(20);
+        height: exampleToRem(20);
+        border: 1px solid $exampleColorPurple;
+        margin-right: exampleToRem(12);
+        border-radius: exampleToRem(5);
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: url("../../assets/images/check.svg");
+          background-color: $exampleColorPurple;
+          background-repeat: no-repeat;
+          background-position: center;
+          opacity: 0;
+          transition: all .15s ease-out;
+        }
+      }
+    }
+
+    &__invalid {
+
+      label {
+        color: $exampleColorError;
+
+        span {
+          border-color: $exampleColorError;
+        }
+      }
+    }
+  }
+
+  .input-radio {
+    position: relative;
+    margin-bottom: exampleToRem(25);
+
+    &__label {
+      margin-bottom: exampleToRem(12);
+    }
+
+    &__option {
+      display: flex;
+      margin-bottom: exampleToRem(8);
+
+      input {
+        display: none;
+
+        &:checked {
+
+          & + label {
+
+            span {
+              &::before {
+                width: exampleToRem(12);
+                height: exampleToRem(12);
+              }
+            }
+          }
+        }
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        span {
+          position: relative;
+          display: inline-block;
+          width: exampleToRem(18);
+          height: exampleToRem(18);
+          margin-right: exampleToRem(7);
+
+          &::after,
+          &::before {
+            transition: all .1s;
+          }
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background-color: $exampleColorPurple;
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(0, -50%);
+            width: calc(100% - 2px);
+            height: calc(100% - 2px);
+            border-radius: 50%;
+            border: 1px solid $exampleColorPurple;
+          }
+        }
+      }
+    }
+
+    &.horizontal {
+
+      .input-radio {
+
+        &__options {
+          display: flex;
+        }
+
+        &__option {
+          margin-bottom: 0;
+          margin-right: exampleToRem(20);
+        }
+      }
+    }
+
+    &__invalid {
+
+      label {
+        color: $exampleColorError;
+
+        span {
+          &:before,
+          &:after {
+            border-color: $exampleColorError;
+          }
+        }
+      }
+    }
+  }
+
+  .select-box {
+    position: relative;
+    margin-bottom: exampleToRem(30);
+    width: 100%;
+
+    &__label {
+      position: absolute;
+      top: 50%;
+      left: exampleToRem(15);
+      z-index: 1;
+      transform: translate(0, -50%);
+      pointer-events: none;
+      transition: all .15s ease-in-out;
+      color: $exampleColorGrayText;
+    }
+
+    &__no-empty {
+
+      .select-box__label {
+        font-size: exampleToRem(10);
+        top: exampleToRem(-1);
+        background-color: $exampleColorWhite;
+        padding-left: exampleToRem(2);
+        padding-right: exampleToRem(2);
+        border-radius: exampleToRem(3);
+      }
+    }
+
+    &__invalid {
+      .select-box__label {
+        color: $exampleColorError;
+      }
+    }
+
+    &__error-text {
+      position: absolute;
+      top: 100%;
+      font-size: exampleToRem(12);
+      //color: $colorError;
+    }
+
+    &__element_right {
+      position: absolute;
+      top: 50%;
+      right: exampleToRem(37);
+      transform: translate(0, -50%);
+    }
+  }
+
+  .photo-field {
+    margin-bottom: exampleToRem(30);
+    position: relative;
+    border: 1px solid $exampleColorGrayBorder;
+    border-radius: exampleToRem(10);
+    padding: exampleToRem(30) exampleToRem(10);
+    display: flex;
+
+    &:hover {
+      border-color: $exampleColorPurple;
+    }
+
+    &__invalid {
+      border-color: $exampleColorError;
+    }
+
+
+    &__image {
+      background-color: $exampleColorWhite;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      border-radius: exampleToRem(5);
+      width: exampleToRem(73);
+      height: exampleToRem(76);
+    }
+
+    &__content {
+      margin-left: exampleToRem(10);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &__title {
+      font-size: exampleToRem(14);
+      line-height: 140%;
+    }
+
+    input {
+
+      &[type='file'] {
+        display: none;
+      }
+    }
+
+    &__actions {
+      display: flex;
+    }
+  }
+
+  .input-file {
+
+    &__label {
+      font-size: exampleToRem(14);
+      line-height: 140%;
+      text-decoration-line: underline;
+      color: $exampleColorPurple;
+      cursor: pointer;
+    }
+  }
+
+  .title {
+    font-weight: 700;
+    line-height: 130%;
+    font-size: exampleToRem(32);
+    margin-bottom: exampleToRem(15);
+  }
+
+  .btn {
+    cursor: pointer;
+    border: none;
+    color: $exampleColorWhite;
+
+    &:disabled {
+      background: $exampleDisabledBackground;
+      pointer-events: none;
+    }
+
+    &-main {
+      border-radius: exampleToRem(100);
+      color: $exampleColorWhite;
+      width: 100%;
+      padding: exampleToRem(16);
+      background: radial-gradient(125% 125% at 85.42% 0%, #826EFF 0%, #6552D8 100%);
+      transition: all .3s ease;
+
+      &:hover {
+        opacity: .9;
+      }
+
+      &:active {
+        opacity: .8;
+      }
+    }
+  }
+
+  .modal-core {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(51, 61, 69, 0.74);
+    z-index: $exampleModalZIndex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: exampleToRem(15);
+    animation-name: appear;
+
+    &__wrapper {
+      background-color: $exampleColorWhite;
+      padding: exampleToRem(30);
+      max-width: exampleToRem(500);
+      width: 100%;
+      animation-name: slide-in;
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100vh - 30px);
+    }
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: exampleToRem(10);
+
+      .title {
+        flex-grow: 1;
+        padding-right: exampleToRem(15);
+        text-align: left;
+      }
+    }
+
+    &__close {
+      padding: exampleToRem(5);
+      display: flex;
+      cursor: pointer;
+
+      svg {
+        width: exampleToRem(14);
+        height: exampleToRem(14);
+        pointer-events: none;
+      }
+
+      path {
+        fill: $exampleColorMain;
+      }
+    }
+
+    &__content {
+      overflow: auto;
+    }
+
+    &__footer {
+      margin-top: exampleToRem(20);
+    }
+
+    &__closing {
+      animation-name: disappearance;
+
+      .modal-core__wrapper {
+        animation-name: slide-out;
+      }
+    }
+
+    &.full-width {
+      .modal-core__wrapper {
+        max-width: exampleToRem($containerWidth);
+
+        @include exampleLaptop {
+          padding: exampleToRem(5);
+        }
+      }
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes disappearance {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+
+    @keyframes slide-in {
+      from {
+        transform: translateY(-100px);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+
+    @keyframes slide-out {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-100px);
+      }
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid $exampleColorGrayBorder;
+
+    th,
+    td {
+      padding: exampleToRem(10);
+      width: 33.3%;
+      border: 3px solid $exampleColorGrayBorder;
+
+      @include exampleLaptop {
+        padding: exampleToRem(5);
+      }
+    }
+
+    tbody {
+      tr {
+        &:hover {
+          background-color: $exampleColorDisabled;
+        }
+      }
+    }
+  }
+
+  .mb {
+
+    &15 {
+      margin-bottom: exampleToRem(15);
+    }
+  }
+
+  .slider {
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: exampleToRem(20);
+
+      &__title {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 140%;
+      }
+    }
+
+    &-content {
+      display: flex;
+      align-items: center;
+      margin-bottom: exampleToRem(3);
+    }
+
+    &-footer {
+      display: flex;
+      justify-content: space-between;
+      color: $exampleColorGrayText;
+    }
+
+    &-track {
+      flex-grow: 1;
+      height: 3px;
+      display: flex;
+
+      &__range {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    &-thumb {
+      width: 0;
+      height: 0;
+      outline: none;
+      position: relative;
+
+      &__content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        width: 11px;
+        height: 11px;
+        background-color: #FF9900;
+        border-radius: 50%;
+
+        &_min {
+          transform: translate(0, -50%);
+        }
+
+        &_max {
+          transform: translate(-100%, -50%);
+        }
+      }
+    }
+
+    &-btn {
+      cursor: pointer;
+      border-radius: 50%;
+      color: #FF9900;
+      width: 20px;
+      height: 20px;
+
+      &__disabled {
+        opacity: .7;
+        pointer-events: none;
+      }
+
+      &:active {
+        box-shadow: 0 0 10px 1px #FF9900 inset;
+
+        circle {
+          opacity: .5;
+        }
+      }
+    }
+
+    .input-box {
+      position: relative;
+      margin-bottom: 0;
+      max-width: exampleToRem(78);
+      font-weight: 600;
+      font-size: exampleToRem(14);
+      line-height: exampleToRem(17);
+      color: #333D45;
+
+      input {
+        border-radius: 0;
+        border-top: 0;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 1px solid $exampleColorGrayBorder;
+        width: 100%;
+        padding: exampleToRem(4) exampleToRem(20);
+      }
+
+      &__element_right {
+        position: absolute;
+        right: exampleToRem(0);
+        top: 50%;
+        transform: translateY(-50%);
+        color: $exampleColorGrayText
+      }
+    }
+  }
+}

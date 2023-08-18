@@ -1,0 +1,11 @@
+export { ReactComponent as AlertErrorIcon } from '@/core/assets/images/alert_error.svg';
+export { ReactComponent as AlertInfoIcon } from '@/core/assets/images/alert_info.svg';
+export { ReactComponent as AlertSuccessIcon } from '@/core/assets/images/alert_success.svg';
+export { ReactComponent as AlertWarningIcon } from '@/core/assets/images/alert_warning.svg';
+export { ReactComponent as CloseIcon } from '@/core/assets/images/close.svg';
+export { ReactComponent as SliderBtnMinusIcon } from '@/core/assets/images/slider_btn_minus.svg';
+export { ReactComponent as SliderBtnPlusIcon } from '@/core/assets/images/slider_btn_plus.svg';
+export { ReactComponent as InputErrorIcon } from '@/core/assets/images/input_error.svg';
+export { ReactComponent as CalendarArrowLeftIcon } from '@/core/assets/images/calendar_arrow_left.svg';
+export { ReactComponent as CalendarArrowRightIcon } from '@/core/assets/images/calendar_arrow_right.svg';
+export { ReactComponent as CalendarIcon } from '@/core/assets/images/calendar_icon.svg';
