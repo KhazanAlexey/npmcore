@@ -1,0 +1,42 @@
+{
+  "name": "awesome-library",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "awesome-library/src",
+  "projectType": "library",
+  "tags": ["test lib"],
+  "skipTypeField": true,
+  "format": ["esm", "cjs"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["awesome-library/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/awesome-library"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/awesome-library"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../coverage/awesome-library"
+      }
+    }
+  }
+}

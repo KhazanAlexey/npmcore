@@ -1,0 +1,40 @@
+{
+  "name": "library3",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "library3/src",
+  "projectType": "library",
+  "tags": ["test lib"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["library3/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/library3"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/library3"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../coverage/library3"
+      }
+    }
+  }
+}
