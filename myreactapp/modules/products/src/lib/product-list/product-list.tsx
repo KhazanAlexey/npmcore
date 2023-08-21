@@ -8,7 +8,7 @@ export function ProductList(props: ProductListProps) {
   return (
     <div className={styles['container']}>
       <h1>Welcome to ProductList!</h1>sss
-        <OrderList />
+        {/*<OrderList />*/}
     </div>
   );
 }

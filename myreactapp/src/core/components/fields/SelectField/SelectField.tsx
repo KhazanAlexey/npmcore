@@ -75,7 +75,7 @@ export const SelectField = (props: SelectFieldProps) => {
         onFocus={handleFocus}
         onBlur={handleBlur}
         onChange={handelChange}
-        isError={!!error}
+        // isError={!!error}
         placeholder={placeholder}
         {...rest}
       />

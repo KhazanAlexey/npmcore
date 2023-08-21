@@ -7,7 +7,7 @@ import { useHookFormFieldError } from '@/core/hooks';
 
 export type TextFieldHookFormProps = Omit<TextFieldProps, 'value'> & UseControllerCoreProps;
 
-export const TextFieldHookForm = (props: TextFieldHookFormProps) => {
+export const TextFieldHookForm2 = (props: TextFieldHookFormProps) => {
   const { name, control, rules, onChange, onBlur, ...rest } = props;
 
   const getFieldError = useHookFormFieldError();

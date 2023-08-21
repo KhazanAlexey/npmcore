@@ -1,4 +1,4 @@
-import * as CoreActions from 'core/store/actions';
+import * as CoreActions from '@/core/store/actions';
 import { DispatchedAction } from './common';
 
 export type SetAlert = DispatchedAction<typeof CoreActions.setAlert>;

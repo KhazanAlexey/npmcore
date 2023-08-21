@@ -1,11 +1,8 @@
 import {Button} from '../../../../lib';
-import {AwesomeLibrary} from "@awesomelibrary";
-// import {OrderList} from "modules/orders";
-// @ts-ignore
-// import {Library2} from "library2";
-import Library2 from "../../../../../library2/src/lib/library2";
-// import {Library3} from "@library3";
+
 import Library3 from "../../../../../library3/src/lib/library3";
+import {ProductList3} from "@myreactapp/modules/products";
+import {Library2} from "library2";
 
 
 export const Home = () => {
@@ -14,6 +11,7 @@ export const Home = () => {
       <h1>Home</h1>
         <Library3/>
         <Library2/>
+      <ProductList3/>
         <Button>button</Button>
     </div>
   );

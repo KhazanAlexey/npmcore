@@ -1,5 +1,5 @@
+import { SubmitCoreHandler } from '@/core/models';
 import { HookForm, HookFormData } from './HookForm';
-import { SubmitCoreHandler } from 'core/models';
 
 export const HookFormContainer = () => {
   const onSubmit: SubmitCoreHandler<HookFormData> = (values, form) => {

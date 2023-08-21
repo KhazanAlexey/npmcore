@@ -27,7 +27,11 @@ export default ({ mode}:{ mode:any }) => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
-        '@awesome-library': path.resolve(__dirname, 'awesome-library')
+        '@awesome-library': path.resolve(__dirname, 'awesome-library'),
+        "@myreactapp/modules/products": path.resolve(__dirname, 'modules/products/src/index.ts'),
+        "library2": path.resolve(__dirname, 'library2/src/index.ts'),
+        "@textFieldHookForm": path.resolve(__dirname, 'text-field-hook-form/src/index.ts'),
+        "librart4": path.resolve(__dirname, 'librart4/src/index.ts'),
       }
     },
 

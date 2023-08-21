@@ -5,8 +5,7 @@ import {
   CheckBoxFieldHookForm,
   RadioFieldHookForm,
   SelectFieldHookForm,
-  TextFieldHookForm,
-  CheckBoxFieldMultiHookForm,
+  CheckBoxFieldMultiHookForm, TextFieldHookForm2,
 } from '@/core/components/fields';
 import { Button } from '@/core/components/common';
 import {
@@ -27,6 +26,7 @@ import {
 } from '@/core/components/Example/utils';
 
 import plugFrontSideIcon from '@/core/assets/images/plug_back_side.svg';
+import {TextFieldHookForm} from "@textFieldHookForm";
 
 export interface HookFormData {
   text_field: string;
@@ -77,7 +77,7 @@ export const HookForm = (props: HookFormProps) => {
           rules={validateTextField}
         />
 
-        <TextFieldHookForm
+        <TextFieldHookForm2
           name='phone_code'
           control={control}
           label={t('phone_code')}
@@ -85,7 +85,7 @@ export const HookForm = (props: HookFormProps) => {
           rules={validateCodeField}
         />
 
-        <TextFieldHookForm
+        <TextFieldHookForm2
           name='mobile_phone'
           control={control}
           label={t('mobile_phone')}

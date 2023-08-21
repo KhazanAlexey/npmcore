@@ -5,7 +5,7 @@ import cn from 'classnames';
 import { useForm } from 'react-hook-form';
 
 import { SliderBtnMinusIcon, SliderBtnPlusIcon } from '@/core/components/common';
-import { TextFieldHookForm, TextFieldProps } from '@/core/components/fields';
+import { TextFieldHookForm2, TextFieldProps } from '@/core/components/fields';
 import { onlyNumbers } from '@/core/utils/parsers';
 import { UseControllerCoreProps } from '@/core/models';
 
@@ -138,7 +138,7 @@ export const SliderHookForm = (props: SliderProps) => {
             ) : (
                 <form className={cn('slider-header', classes.header)} onSubmit={handleSubmit(onSubmit)}>
                     <p className='slider-header__title'>{title}</p>
-                    <TextFieldHookForm
+                    <TextFieldHookForm2
                         parsers={[onlyNumbers]}
                         name={name}
                         onBlur={setFieldValue}

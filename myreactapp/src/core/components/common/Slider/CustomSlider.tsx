@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import './style.scss';
 import { TextFieldProps } from '../../fields/TextField/TextField';
 import { UseControllerCoreProps } from '@/core/models/fields';
-import {TextFieldHookForm} from "@/core/components/fields";
+import {TextFieldHookForm2} from "@/core/components/fields";
 import { onlyNumbers } from '@/core/utils/parsers/parsers';
 import { SliderBtnMinusIcon, SliderBtnPlusIcon } from '../customIcons/customIcons';
 
@@ -140,7 +140,7 @@ export const CustomSlider = (props: SliderProps) => {
       ) : (
         <form className={cn('slider-header', classes.header)} onSubmit={handleSubmit(onSubmit)}>
           <p className='slider-header__title'>{title}</p>
-          <TextFieldHookForm
+          <TextFieldHookForm2
             parsers={[onlyNumbers]}
             name={name}
             onBlur={setFieldValue}

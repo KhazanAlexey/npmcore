@@ -1,3 +1,3 @@
 export * from './TextField';
 export * from './TextFieldFormikWrapper';
-export * from './TextFieldHookForm';
+export * from './TextFieldHookForm2';

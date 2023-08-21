@@ -18,9 +18,10 @@
       "@/*": ["./src/*"],
       "@awesomelibrary": ["awesome-library/src/index.ts"],
       "@library3": ["library3/src/index.ts"],
+      "@myreactapp/modules/products": ["modules/products/src/index.ts"],
+      "@textFieldHookForm": ["text-field-hook-form/src/index.ts"],
       "library2": ["library2/src/index.ts"],
       "modules/orders": ["modules/orders/src/index.ts"],
-      "modules/products": ["modules/products/src/index.ts"],
       "modules/shared/ui": ["modules/shared/ui/src/index.ts"]
     }
   },
