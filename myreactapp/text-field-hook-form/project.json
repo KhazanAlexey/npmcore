@@ -1,0 +1,40 @@
+{
+  "name": "text-field-hook-form",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "text-field-hook-form/src",
+  "projectType": "library",
+  "tags": ["textFieldHookForm"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["text-field-hook-form/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/text-field-hook-form"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/text-field-hook-form"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../coverage/text-field-hook-form"
+      }
+    }
+  }
+}
