@@ -1,0 +1,40 @@
+{
+  "name": "core-fields",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "core-fields/src",
+  "projectType": "library",
+  "tags": ["core-fields"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["core-fields/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/core-fields"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/core-fields"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../coverage/core-fields"
+      }
+    }
+  }
+}
